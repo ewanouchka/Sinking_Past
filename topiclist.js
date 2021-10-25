@@ -71,7 +71,7 @@ const closePopup = () => {
 
 
 const blocFA = document.querySelector("#fa_right");
-if(blocFA.hasClass('welcome')) {blocParent.classList.add("display-block")};
+if(blocFA.classList.contains('welcome')) {blocParent.classList.add("display-block")};
 
 const blocReceveur = document.querySelector("#receveur-topiclist");
 
