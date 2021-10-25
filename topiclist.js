@@ -76,7 +76,7 @@ const blocFA = document.querySelector("#fa_right");
 if (blocFA.classList.contains('welcome')) {
   blocParent.classList.add("display-block")
    };
-};
+});
 
 const blocReceveur = document.querySelector("#receveur-topiclist");
 
