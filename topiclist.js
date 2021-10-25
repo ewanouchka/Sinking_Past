@@ -38,6 +38,39 @@ let arrayOfTopics = formatList();
 
 // appels des fonctions pour affichage
 
+/*--- CREATION D'UN POPUP ---*/
+
+// fonction création du bloc popup
+
+const popupContainer = document.createElement("div");
+const popupBloc = document.createElement("div");
+
+const createPopup = (popupName) => {
+  popupContainer.setAttribute("id", "popup");
+  popupContainer.classList.add("popup-container");
+  popupBloc.classList.add(popupName);
+  document.body.append(popupContainer);
+  popupContainer.append(popupBloc);
+};
+
+// fonction fermeture du popup
+
+const closePopup = () => {
+  while (popupContainer.hasChildNodes()) {
+    popupContainer.removeChild(popupContainer.firstChild);
+  }
+  document.body.removeChild(popupContainer);
+};
+
+/*--- CONTENU DU POPUP QUI SE SUPERPOSE AU BLOC DE LA TOOLBAR ---*/
+
+const blocFA = document.querySelector("#fa_right");
+if (blocFA.classList.contains("welcome")) {
+  const blocParent = document.querySelector("#parentli");
+  blocParent.innerHTML = '<div id="receveur"></div>
+    <button id="add-to-list" class="addli">+ Ajouter un lien</button
+    ><button id="remove-list" class="resetli">Reset</button>';}
+
 const blocReceveur = document.querySelector("#receveur");
 
 const listContent = () => {
@@ -81,31 +114,8 @@ const listContent = () => {
 };
 listContent();
 
-/*--- POPUP CONTENANT LE FORMULAIRE A RENSEIGNER ---*/
 
-// fonction création du bloc popup
-
-const popupContainer = document.createElement("div");
-const popupBloc = document.createElement("div");
-
-const createPopup = (popupName) => {
-  popupContainer.setAttribute("id", "popup");
-  popupContainer.classList.add("popup-container");
-  popupBloc.classList.add(popupName);
-  document.body.append(popupContainer);
-  popupContainer.append(popupBloc);
-};
-
-// fonction fermeture du popup
-
-const closePopup = () => {
-  while (popupContainer.hasChildNodes()) {
-    popupContainer.removeChild(popupContainer.firstChild);
-  }
-  document.body.removeChild(popupContainer);
-};
-
-// contenu du popup
+/*--- CONTENU D'UN POPUP CONTENANT LE FORMULAIRE A RENSEIGNER ---*/
 
 const createForm = () => {
   popupBloc.innerHTML = `<section class="bloc-form">
