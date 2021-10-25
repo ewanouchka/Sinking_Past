@@ -1,7 +1,7 @@
 /*--- DES FONCTIONS POUR ACCEDER AU LOCAL STORAGE ---*/
 // à voir comment tu crées le nom des clés
 
-const clef = "memoliens"; //+ _userdata.user_id;
+const clef = "memoliens" + _userdata.user_id;
 
 const getStorageItem = (name) => {
   return JSON.parse(localStorage.getItem(name));
@@ -67,8 +67,7 @@ const closePopup = () => {
     createPopup("popup-receveur");
   const blocParent = document.querySelector(".popup-receveur");
   blocParent.classList.add("display-block");
-  blocParent.innerHTML = '<div id="receveur-topiclist"></div>
-    <button id="add-to-list" class="addli">+ Ajouter un lien</button><button id="remove-list" class="resetli">Reset</button>';
+  blocParent.innerHTML = '<div id="receveur-topiclist"></div><button id="add-to-list" class="addli">+ Ajouter un lien</button><button id="remove-list" class="resetli">Reset</button>';
 
 
 const blocFA = document.querySelector("#fa_right");
@@ -259,17 +258,3 @@ supprAll.addEventListener("click", () => {
 
   listContent();
 });
-/*
-// TON CODE D'ORIGINE --> Je n'y laisse que la partie affichage des div
-
-$(function() {
-    $(function() {
-    $("#switch_parent").attr("id","newId");
-    $('#fa_menulist').html("<div id='fa_usermenu'>" + _userdata.username + "<div id='tool_switch'>" + $("#newId").html()+`</div></div><div class="parentli">
-    <div id="receveur"></div>
-    <button id="add-to-list" class="addli" data-uw-styling-context="true">+ Ajouter un lien</button
-    ><button id="remove-list" class="resetli" data-uw-styling-context="true">Reset</button>
-  </div>`);
-    $("#newId").remove();
-    })
-      });*/
