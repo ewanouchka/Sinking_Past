@@ -67,7 +67,8 @@ const closePopup = () => {
     createPopup("popup-receveur");
   const blocParent = document.querySelector(".popup-receveur");
   blocParent.classList.add("display-block");
-  blocParent.innerHTML = '<div id="receveur"></div>
+  blocParent.innerHTML = '<div id="
+    -topiclist"></div>
     <button id="add-to-list" class="addli">+ Ajouter un lien</button
     ><button id="remove-list" class="resetli">Reset</button>';
 
@@ -75,7 +76,7 @@ const closePopup = () => {
 const blocFA = document.querySelector("#fa_right");
 if(blocFA.hasClass('welcome')) {blocParent.classList.add("display-block")};
 
-const blocReceveur = document.querySelector("#receveur");
+const blocReceveur = document.querySelector("#receveur-topiclist");
 
 const listContent = () => {
   blocReceveur.innerHTML = arrayOfTopics
