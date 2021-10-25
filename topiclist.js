@@ -74,7 +74,7 @@ const blocAvatarTool = document.querySelector("#fa_welcome");
 blocAvatarTool.addEventListener("click", () => {
 const blocFA = document.querySelector("#fa_right");
 if (blocFA.classList.contains('welcome')) {
-  blocParent.classList.add("display-block")
+  blocParent.classList.remove("display-none")
    };
 });
 
