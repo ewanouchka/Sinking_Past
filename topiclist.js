@@ -71,11 +71,11 @@ const closePopup = () => {
 
 
 document.addEventListener("click", () => {
-const blocFA = document.querySelector("#fa_right");
-  console.log(blocFA);
-if (blocFA.classList.contains('welcome')) {
-  blocParent.classList.remove("display-none")
-   };
+//const blocFA = document.querySelector("#fa_right");
+  
+//if (blocFA.classList.contains('welcome')) {
+  blocParent.classList.toggle("display-none");
+  // };
 });
 
 const blocReceveur = document.querySelector("#receveur-topiclist");
