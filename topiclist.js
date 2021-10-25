@@ -66,7 +66,7 @@ const closePopup = () => {
 
     createPopup("popup-receveur");
   const blocParent = document.querySelector(".popup-receveur");
-  blocParent.classList.add("display-block");
+  blocParent.classList.add("display-none");
   blocParent.innerHTML = '<div id="receveur-topiclist"></div><button id="add-to-list" class="addli">+ Ajouter un lien</button><button id="remove-list" class="resetli">Reset</button>';
 
 
