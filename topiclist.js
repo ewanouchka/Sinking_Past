@@ -70,8 +70,7 @@ const closePopup = () => {
   blocParent.innerHTML = '<div id="receveur-topiclist"></div><button id="add-to-list" class="addli">+ Ajouter un lien</button><button id="remove-list" class="resetli">Reset</button>';
 
 
-//const blocAvatarTool = document.querySelector("#fa_welcome");
-$('#fa_welcome').addEventListener("click", () => {
+document.querySelector('#fa_welcome').addEventListener("click", () => {
 const blocFA = document.querySelector("#fa_right");
 if (blocFA.classList.contains('welcome')) {
   blocParent.classList.remove("display-none")
