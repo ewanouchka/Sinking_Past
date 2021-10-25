@@ -71,6 +71,7 @@ const closePopup = () => {
 
 
 const blocAvatarTool = document.querySelector("#fa_welcome");
+console.log(blocAvatarTool);
 blocAvatarTool.addEventListener("click", () => {
 const blocFA = document.querySelector("#fa_right");
 if (blocFA.classList.contains('welcome')) {
