@@ -65,9 +65,9 @@ const closePopup = () => {
 /*--- CONTENU DU POPUP QUI SE SUPERPOSE AU BLOC DE LA TOOLBAR ---*/
 
 const blocFA = document.querySelector("#fa_right");
-if (blocFA.classList.contains("welcome")) {
+if(blocFA.hasClass('welcome')) {
     createPopup("popup-receveur");
-  const blocParent = document.querySelector("#parentli");
+  const blocParent = document.querySelector(".popup-receveur");
   blocParent.innerHTML = '<div id="receveur"></div>
     <button id="add-to-list" class="addli">+ Ajouter un lien</button
     ><button id="remove-list" class="resetli">Reset</button>';}
