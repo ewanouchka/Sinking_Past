@@ -66,6 +66,7 @@ const closePopup = () => {
 
 const blocFA = document.querySelector("#fa_right");
 if (blocFA.classList.contains("welcome")) {
+    createPopup("popup-receveur");
   const blocParent = document.querySelector("#parentli");
   blocParent.innerHTML = '<div id="receveur"></div>
     <button id="add-to-list" class="addli">+ Ajouter un lien</button
