@@ -101,7 +101,7 @@ var popupBloc = document.createElement("div");
 var createPopup = (containerName, blocName) => {
   popupContainer.setAttribute("id", "popup");
   popupContainer.classList.add(containerName);
-blocNoteButton.setAttribute("id", blocName);
+  popupBloc.setAttribute("id", blocName);
   popupBloc.classList.add(blocName);
   document.body.append(popupContainer);
   popupContainer.append(popupBloc);
