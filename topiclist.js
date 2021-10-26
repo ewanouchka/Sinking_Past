@@ -1,7 +1,7 @@
 /*--- DES FONCTIONS POUR ACCEDER AU LOCAL STORAGE ---*/
 // à voir comment tu crées le nom des clés
 
-const clef = "memoliens" + _userdata.user_id;
+const clef = "memoliens"; // + _userdata.user_id;
 
 const getStorageItem = (name) => {
   return JSON.parse(localStorage.getItem(name));
@@ -36,49 +36,9 @@ const formatList = () => {
 // on crée une variable qui utilise la fonction formatList pour avoir accès directement au tableau de liens
 let arrayOfTopics = formatList();
 
-// appels des fonctions pour affichage
+/*--- ON AFFICHE LA LISTE DES LIENS DANS LE BLOC RECEVEUR ---*/
 
-/*--- CREATION D'UN POPUP ---*/
-
-// fonction création du bloc popup
-
-const popupContainer = document.createElement("div");
-const popupBloc = document.createElement("div");
-
-const createPopup = (popupName) => {
-  popupContainer.setAttribute("id", "popup");
-  popupContainer.classList.add("popup-container");
-  popupBloc.classList.add(popupName);
-  document.body.append(popupContainer);
-  popupContainer.append(popupBloc);
-};
-
-// fonction fermeture du popup
-
-const closePopup = () => {
-  while (popupContainer.hasChildNodes()) {
-    popupContainer.removeChild(popupContainer.firstChild);
-  }
-  document.body.removeChild(popupContainer);
-};
-
-/*--- CONTENU DU POPUP QUI SE SUPERPOSE AU BLOC DE LA TOOLBAR ---*/
-
-    createPopup("popup-receveur");
-  const blocParent = document.querySelector(".popup-receveur");
-  blocParent.classList.add("display-none");
-  blocParent.innerHTML = '<div id="receveur-topiclist"></div><button id="add-to-list" class="addli">+ Ajouter un lien</button><button id="remove-list" class="resetli">Reset</button>';
-
-
-document.addEventListener("click", () => {
-//const blocFA = document.querySelector("#fa_right");
-  
-//if (blocFA.classList.contains('welcome')) {
-  blocParent.classList.toggle("display-none");
-  // };
-});
-
-const blocReceveur = document.querySelector("#receveur-topiclist");
+const blocReceveur = document.querySelector("#receveur");
 
 const listContent = () => {
   blocReceveur.innerHTML = arrayOfTopics
@@ -88,7 +48,7 @@ const listContent = () => {
     )
     .join("");
 
-  /*--- FONCTIONS MODIFICATIONS DE LA LISTE DES SUJETS ---*/
+  /*--- FONCTIONS MODIFICATIONS DE LA LISTE DES SUJETS (PART I) ---*/
   // --> suppression d'un sujet au clic sur la corbeille en fin de ligne
 
   let trashButton = document.querySelectorAll(".trash");
@@ -121,145 +81,205 @@ const listContent = () => {
 };
 listContent();
 
+/*--- ON CREE UN BOUTON BLOC-NOTE QU'ON POSITIONNE EN ABSOLU PAR-DESSUS LA TOOLBAR ---*/
 
-/*--- CONTENU D'UN POPUP CONTENANT LE FORMULAIRE A RENSEIGNER ---*/
+const blocNoteButton = document.createElement("button");
+blocNoteButton.setAttribute("id", "blocnote-button");
+blocNoteButton.classList.add("blocnote-button");
+document.body.append(blocNoteButton);
+blocNoteButton.innerHTML = '<img src="blocnote.png" class="blocnote-button-img"/>';
 
-const createForm = () => {
-  popupBloc.innerHTML = `<section class="bloc-form">
-    <h2 class="bloc-form__title">Merci de remplir ce formulaire pour saisir le sujet</h2>
-    <label for="Link" class="bloc-form__label">Votre sujet :</label>
-    <input placeholder="ex: https://sinking-past.forumactif.com/" name="Link" id="Link" class="bloc-form__input" type="text" required oninput="checkValidity(this)">
-    </input><span class="error-visible" id="error-message-Link"></span>
-    <label for="Title" class="bloc-form__label">Le titre à afficher :</label>
-    <input placeholder="ex: le nom du sujet" name="Title" id="Title" class="bloc-form__input" type="text" required oninput="checkValidity(this)">
-    </input><span class="error-visible" id="error-message-Title"></span>
-    <button class="button" id="add-confirm"><span>Ajouter</span></button>
-    <button class="button" id="quit-add"><span>Quitter</span></button>
-`;
+/*--- CREATION D'UN POPUP ---*/
+
+// fonction création du bloc popup
+
+const popupContainer = document.createElement("div");
+const popupBloc = document.createElement("div");
+
+const createPopup = (containerName, blocName) => {
+  popupContainer.setAttribute("id", "popup");
+  popupContainer.classList.add(containerName);
+  popupBloc.classList.add(blocName);
+  document.body.append(popupContainer);
+  popupContainer.append(popupBloc);
 };
 
-/*--- OUVERTURE DU FORMULAIRE QUAND ON CLIQUE SUR +AJOUTER UN LIEN ---*/
-// on écoute le clic sur le bouton dont l'id est add-to-list
-const addToListButton = document.querySelector("#add-to-list");
+// fonction fermeture du popup
 
-addToListButton.addEventListener("click", (event) => {
-  event.preventDefault();
+const closePopup = () => {
+  while (popupContainer.hasChildNodes()) {
+    popupContainer.removeChild(popupContainer.firstChild);
+  }
+  document.body.removeChild(popupContainer);
+};
 
-  const openForm = () => {
-    createPopup("popup-bloc");
-    createForm(); // on appelle la fonction qui crée le corps du formulaire
+/*--- ON CREE LE BLOC QUI PERMETTRA D'AJOUTER UN LIEN OU VIDER LE BLOC-NOTE ---*/
 
-    const quitAdd = document.querySelector("#quit-add"); // on sélectionne le bouton quitter
+blocNoteButton.addEventListener("click", () => {
+  const loadForm = () => {
+    createPopup("form-container", "form-bloc");
+    popupBloc.innerHTML =
+      '<button id="close-cross" class="close-cross">X</button><button id="add-to-list" class="addli">+ Ajouter un lien</button><button id="remove-list" class="resetli">Reset</button>';
 
-    quitAdd.addEventListener("click", function () {
-      // au clic sur le bouton quitter :
+    document.querySelector("#close-cross").addEventListener("click", () => {
       closePopup();
     });
 
-    const validateAdd = document.querySelector("#add-confirm"); // on sélectionne le bouton ajouter
+    /*--- FONCTIONS MODIFICATIONS DE LA LISTE DES SUJETS (PART II) ---*/
+    // --> suppression de l'ensemble du panier au clic sur "vider le panier"
 
-    validateAdd.addEventListener("click", function () {
-      // au clic sur le bouton ajouter :
-      // foncion qui vérifier la conformité
+    const supprAll = document.querySelector("#remove-list");
 
-      const inputValues = document.querySelectorAll(".bloc-form__input");
+    supprAll.addEventListener("click", () => {
+      removeStorageItem(clef);
 
-      const checkAllValidity = () => {
-        let validity = true;
-        for (const inputValue of inputValues) {
-          if (inputValue.validity.valid == false) {
-            validity = false;
-          }
-        }
-        return validity;
-      };
+      topicsInList = getStorageItem(clef);
 
-      // récupération des valeurs du formulaire si tout est OK
+      arrayOfTopics = formatList();
 
-      if (checkAllValidity()) {
-        // on crée un objet temporaire qui comportera le lien et le titre renseignés
+      listContent();
+      createPopup("popup-container", "suppr-confirm");
+      document.querySelector(".suppr-confirm").innerHTML = `La liste a bien été vidée.
+    <button class="button" id="close-confirm"><span>Fermer</span></button>`;
 
-        const getInputValue = (inputId) => {
-          const inputValue = document.querySelector(`#${inputId}`).value;
-          return inputValue;
-        };
+      document.querySelector("#close-confirm").addEventListener("click", function () {
+        loadForm();
+      });
+    });
 
-        const optionsTopicToAdd = {
-          link: getInputValue("Link"),
-          title: getInputValue("Title"),
-        };
+    /*--- CREATION DU CONTENU DU FORMULAIRE A RENSEIGNER ---*/
 
-        const addToList = () => {
-          // si la liste du localStorage est vide, on crée un nouvel élément memolien avec le sujet en question à l'intérieur
-          if (!topicsInList) {
-            setStorageItem(clef, optionsTopicToAdd);
+    const createForm = () => {
+      popupBloc.innerHTML = `<section class="bloc-form">
+      <h2 class="bloc-form__title">Merci de remplir ce formulaire pour saisir le sujet</h2>
+      <label for="Link" class="bloc-form__label">Votre sujet :</label>
+      <input placeholder="ex: https://sinking-past.forumactif.com/" name="Link" id="Link" class="bloc-form__input" type="text" required oninput="checkValidity(this)">
+      </input><span class="error-visible" id="error-message-Link"></span>
+      <label for="Title" class="bloc-form__label">Le titre à afficher :</label>
+      <input placeholder="ex: le nom du sujet" name="Title" id="Title" class="bloc-form__input" type="text" required oninput="checkValidity(this)">
+      </input><span class="error-visible" id="error-message-Title"></span>
+      <button class="button" id="add-confirm"><span>Ajouter</span></button>
+      <button class="button" id="quit-add"><span>Quitter</span></button>
+  `;
+    };
 
-            topicsInList = getStorageItem(clef);
+    /*--- OUVERTURE DU FORMULAIRE QUAND ON CLIQUE SUR +AJOUTER UN LIEN ---*/
+    // on écoute le clic sur le bouton dont l'id est add-to-list
+    const addToListButton = document.querySelector("#add-to-list");
 
-            arrayOfTopics = formatList();
+    addToListButton.addEventListener("click", (event) => {
+      event.preventDefault();
 
-            listContent();
-            closePopup();
-            return;
-          }
+      const openForm = () => {
+        createPopup("popup-container", "popup-bloc");
+        createForm(); // on appelle la fonction qui crée le contenu du formulaire
 
-          // si le localStorage contient la clé, on vérifie qu'on ne fait pas un doublon. Si ce n'est pas le cas on ajoute à la liste déjà présente le nouveau lien
-          if (topicsInList && arrayOfTopics.every((value) => value.link !== optionsTopicToAdd.link)) {
-            arrayOfTopics.push(optionsTopicToAdd);
-            setStorageItem(clef, arrayOfTopics);
+        const quitAdd = document.querySelector("#quit-add"); // on sélectionne le bouton quitter
 
-            topicsInList = getStorageItem(clef);
+        quitAdd.addEventListener("click", function () {
+          // au clic sur le bouton quitter :
+          closePopup();
+        });
 
-            arrayOfTopics = formatList();
+        const validateAdd = document.querySelector("#add-confirm"); // on sélectionne le bouton ajouter
 
-            listContent();
-            closePopup();
-            return;
-          }
+        validateAdd.addEventListener("click", function () {
+          // au clic sur le bouton ajouter :
+          // foncion qui vérifier la conformité
 
-          // si on n'est pas dans les cas précédents, on crée un message d'erreur
-          else {
-            createPopup("popup-error");
-            document.querySelector(".popup-error").innerHTML = `Ce sujet est déjà dans la liste
+          const inputValues = document.querySelectorAll(".bloc-form__input");
+
+          const checkAllValidity = () => {
+            let validity = true;
+            for (const inputValue of inputValues) {
+              if (inputValue.validity.valid == false) {
+                validity = false;
+              }
+            }
+            return validity;
+          };
+
+          // récupération des valeurs du formulaire si tout est OK
+
+          if (checkAllValidity()) {
+            // on crée un objet temporaire qui comportera le lien et le titre renseignés
+
+            const getInputValue = (inputId) => {
+              const inputValue = document.querySelector(`#${inputId}`).value;
+              return inputValue;
+            };
+
+            const optionsTopicToAdd = {
+              link: getInputValue("Link"),
+              title: getInputValue("Title"),
+            };
+
+            const addToList = () => {
+              // si la liste du localStorage est vide, on crée un nouvel élément memolien avec le sujet en question à l'intérieur
+              if (!topicsInList) {
+                setStorageItem(clef, optionsTopicToAdd);
+
+                topicsInList = getStorageItem(clef);
+
+                arrayOfTopics = formatList();
+
+                listContent();
+                closePopup();
+                return;
+              }
+
+              // si le localStorage contient la clé, on vérifie qu'on ne fait pas un doublon. Si ce n'est pas le cas on ajoute à la liste déjà présente le nouveau lien
+              if (topicsInList && arrayOfTopics.every((value) => value.link !== optionsTopicToAdd.link)) {
+                arrayOfTopics.push(optionsTopicToAdd);
+                setStorageItem(clef, arrayOfTopics);
+
+                topicsInList = getStorageItem(clef);
+
+                arrayOfTopics = formatList();
+
+                listContent();
+                createPopup("popup-container", "add-confirm");
+                document.querySelector(".add-confirm").innerHTML = `Le sujet a bien été ajouté.
+              <button class="button" id="close-confirm"><span>Fermer</span></button>`;
+
+                document.querySelector("#close-confirm").addEventListener("click", function () {
+                  loadForm();
+                });
+                return;
+              }
+
+              // si on n'est pas dans les cas précédents, on crée un message d'erreur
+              else {
+                createPopup("popup-container", "popup-error");
+                document.querySelector(".popup-error").innerHTML = `Ce sujet est déjà dans la liste
               <button class="button" id="close"><span>Fermer</span></button>`;
 
-            document.querySelector("#close").addEventListener("click", function () {
+                document.querySelector("#close").addEventListener("click", function () {
+                  openForm();
+                });
+              }
+            };
+            addToList();
+
+            topicsInList = getStorageItem(clef);
+
+            arrayOfTopics = formatList();
+
+            listContent();
+            return;
+          } else {
+            createPopup("popup-container", "popup-error");
+            document.querySelector(".popup-error").innerHTML = `Merci de compléter les deux champs du formulaire.
+          <button class="button" id="do-it-again"><span>Recommencer</span></button>`;
+
+            document.querySelector("#do-it-again").addEventListener("click", function () {
               openForm();
             });
           }
-        };
-        addToList();
-
-        topicsInList = getStorageItem(clef);
-
-        arrayOfTopics = formatList();
-
-        listContent();
-        return;
-      } else {
-        createPopup("popup-error");
-        document.querySelector(".popup-error").innerHTML = `Merci de compléter les deux champs du formulaire.
-          <button class="button" id="do-it-again"><span>Recommencer</span></button>`;
-
-        document.querySelector("#do-it-again").addEventListener("click", function () {
-          openForm();
         });
-      }
+      };
+      openForm();
     });
   };
-  openForm();
-});
-
-// --> suppression de l'ensemble du panier au clic sur "vider le panier"
-
-const supprAll = document.querySelector("#remove-list");
-
-supprAll.addEventListener("click", () => {
-  removeStorageItem(clef);
-
-  topicsInList = getStorageItem(clef);
-
-  arrayOfTopics = formatList();
-
-  listContent();
+  loadForm();
 });
