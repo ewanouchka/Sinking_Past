@@ -1,7 +1,7 @@
 /*--- DES FONCTIONS POUR ACCEDER AU LOCAL STORAGE ---*/
 // à voir comment tu crées le nom des clés
 
-const clef = "memoliens"; // + _userdata.user_id;
+const clef = "memoliens" + _userdata.user_id;
 
 const getStorageItem = (name) => {
   return JSON.parse(localStorage.getItem(name));
