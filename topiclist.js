@@ -87,7 +87,7 @@ var blocNoteButton = document.createElement("button");
 blocNoteButton.setAttribute("id", "blocnote-button");
 blocNoteButton.classList.add("blocnote-button");
 document.body.append(blocNoteButton);
-blocNoteButton.innerHTML = '<img src="blocnote.png" class="blocnote-button-img"/>';
+blocNoteButton.innerHTML = '<img src="https://ewanouchka.github.io/Sinking_Past/blocnote.png" class="blocnote-button-img"/>';
 
 /*--- CREATION D'UN POPUP ---*/
 
