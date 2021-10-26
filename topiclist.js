@@ -140,7 +140,7 @@ blocNoteButton.addEventListener("click", () => {
 
       arrayOfTopics = formatList();
 
-      listContent();
+displaylist();
       createPopup("form-container", "suppr-confirm");
       document.getElementById("suppr-confirm").innerHTML = `La liste a bien été vidée.
     <button class="button" id="close-confirm"><span>Fermer</span></button>`;
@@ -226,7 +226,7 @@ blocNoteButton.addEventListener("click", () => {
 
                 arrayOfTopics = formatList();
 
-                listContent();
+displaylist();
                 closePopup();
                 return;
               }
@@ -240,7 +240,7 @@ blocNoteButton.addEventListener("click", () => {
 
                 arrayOfTopics = formatList();
 
-                listContent();
+displaylist();
                 createPopup("form-container", "add-confirm");
                 document.getElementById("add-confirm").innerHTML = `Le sujet a bien été ajouté.
               <button class="button" id="close-confirm"><span>Fermer</span></button>`;
