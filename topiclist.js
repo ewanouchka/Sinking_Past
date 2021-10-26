@@ -226,7 +226,7 @@ displaylist();
 
                 arrayOfTopics = formatList();
 
-displaylist();
+//displaylist();
                 closePopup();
                 return;
               }
@@ -240,7 +240,7 @@ displaylist();
 
                 arrayOfTopics = formatList();
 
-displaylist();
+//displaylist();
                 createPopup("form-container", "add-confirm");
                 document.getElementById("add-confirm").innerHTML = `Le sujet a bien été ajouté.
               <button class="button" id="close-confirm"><span>Fermer</span></button>`;
@@ -268,7 +268,7 @@ displaylist();
 
             arrayOfTopics = formatList();
 
-            listContent();
+            //listContent();
             return;
           } else {
             createPopup("form-container", "popup-error");
