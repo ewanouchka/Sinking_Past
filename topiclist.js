@@ -207,7 +207,7 @@ blocNoteButton.addEventListener("click", () => {
             // on crée un objet temporaire qui comportera le lien et le titre renseignés
 
             var getInputValue = (inputId) => {
-              var inputValue = document.getElementById(`#${inputId}`).value;
+              var inputValue = document.getElementById(`${inputId}`).value;
               return inputValue;
             };
 
