@@ -141,7 +141,7 @@ blocNoteButton.addEventListener("click", () => {
       arrayOfTopics = formatList();
 
       listContent();
-      createPopup("popup-container", "suppr-confirm");
+      createPopup("form-container", "suppr-confirm");
       document.getElementById("suppr-confirm").innerHTML = `La liste a bien été vidée.
     <button class="button" id="close-confirm"><span>Fermer</span></button>`;
 
@@ -174,7 +174,7 @@ blocNoteButton.addEventListener("click", () => {
       event.preventDefault();
 
       var openForm = () => {
-        createPopup("popup-container", "popup-bloc");
+        createPopup("form-container", "popup-bloc");
         createForm(); // on appelle la fonction qui crée le contenu du formulaire
 
         var quitAdd = document.getElementById("quit-add"); // on sélectionne le bouton quitter
@@ -241,7 +241,7 @@ blocNoteButton.addEventListener("click", () => {
                 arrayOfTopics = formatList();
 
                 listContent();
-                createPopup("popup-container", "add-confirm");
+                createPopup("form-container", "add-confirm");
                 document.getElementById("add-confirm").innerHTML = `Le sujet a bien été ajouté.
               <button class="button" id="close-confirm"><span>Fermer</span></button>`;
 
@@ -253,7 +253,7 @@ blocNoteButton.addEventListener("click", () => {
 
               // si on n'est pas dans les cas précédents, on crée un message d'erreur
               else {
-                createPopup("popup-container", "popup-error");
+                createPopup("form-container", "popup-error");
                 document.getElementById("popup-error").innerHTML = `Ce sujet est déjà dans la liste
               <button class="button" id="close"><span>Fermer</span></button>`;
 
@@ -271,7 +271,7 @@ blocNoteButton.addEventListener("click", () => {
             listContent();
             return;
           } else {
-            createPopup("popup-container", "popup-error");
+            createPopup("form-container", "popup-error");
             document.getElementById("popup-error").innerHTML = `Merci de compléter les deux champs du formulaire.
           <button class="button" id="do-it-again"><span>Recommencer</span></button>`;
 
