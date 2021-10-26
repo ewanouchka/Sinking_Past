@@ -139,9 +139,7 @@ blocNoteButton.addEventListener("click", () => {
       topicsInList = getStorageItem(clef);
 
       arrayOfTopics = formatList();
-
       
-    displayswitch();
       createPopup("form-container", "suppr-confirm");
       document.getElementById("suppr-confirm").innerHTML = `La liste a bien été vidée.
     <button class="button" id="close-confirm"><span>Fermer</span></button>`;
@@ -226,9 +224,7 @@ blocNoteButton.addEventListener("click", () => {
                 topicsInList = getStorageItem(clef);
 
                 arrayOfTopics = formatList();
-
-     
-    displayswitch();
+                
                 closePopup();
                 return;
               }
@@ -241,9 +237,7 @@ blocNoteButton.addEventListener("click", () => {
                 topicsInList = getStorageItem(clef);
 
                 arrayOfTopics = formatList();
-
-     
-    displayswitch();
+                
                 createPopup("form-container", "add-confirm");
                 document.getElementById("add-confirm").innerHTML = `Le sujet a bien été ajouté.
               <button class="button" id="close-confirm"><span>Fermer</span></button>`;
