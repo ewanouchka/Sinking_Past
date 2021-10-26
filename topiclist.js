@@ -1,6 +1,3 @@
-import {displayswitch} from "https://sinking-test.forumactif.com/32383.js";
-
-
 /*--- DES FONCTIONS POUR ACCEDER AU LOCAL STORAGE ---*/
 // à voir comment tu crées le nom des clés
 
