@@ -117,6 +117,7 @@ var closePopup = () => {
 };
 
 /*--- ON CREE LE BLOC QUI PERMETTRA D'AJOUTER UN LIEN OU VIDER LE BLOC-NOTE ---*/
+var blocNoteButton = document.getElementById("blocnote-button");
 
 blocNoteButton.addEventListener("click", () => {
   var loadForm = () => {
