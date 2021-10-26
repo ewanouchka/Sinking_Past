@@ -1,17 +1,17 @@
 /*--- DES FONCTIONS POUR ACCEDER AU LOCAL STORAGE ---*/
 // à voir comment tu crées le nom des clés
 
-const clef = "memoliens" + _userdata.user_id;
+var clef = "memoliens" + _userdata.user_id;
 
-const getStorageItem = (name) => {
+var getStorageItem = (name) => {
   return JSON.parse(localStorage.getItem(name));
 };
 
-const setStorageItem = (name, value) => {
+var setStorageItem = (name, value) => {
   localStorage.setItem(name, JSON.stringify(value));
 };
 
-const removeStorageItem = (name) => {
+var removeStorageItem = (name) => {
   localStorage.removeItem(name);
 };
 
@@ -20,7 +20,7 @@ const removeStorageItem = (name) => {
 // on accède au storage et on en récupère la liste de liens (toujours à voir comment tu crées le nom de la clé ici mémolien en attendant)
 let topicsInList = getStorageItem(clef);
 
-const formatList = () => {
+var formatList = () => {
   // si la liste est vide, on renvoie un tableau vide
   if (!topicsInList) {
     return [];
@@ -38,9 +38,9 @@ let arrayOfTopics = formatList();
 
 /*--- ON AFFICHE LA LISTE DES LIENS DANS LE BLOC RECEVEUR ---*/
 
-const blocReceveur = document.querySelector("#receveur");
+var blocReceveur = document.querySelector("#receveur");
 
-const listContent = () => {
+var listContent = () => {
   blocReceveur.innerHTML = arrayOfTopics
     .map(
       (topic) =>
@@ -51,7 +51,7 @@ const listContent = () => {
   /*--- FONCTIONS MODIFICATIONS DE LA LISTE DES SUJETS (PART I) ---*/
   // --> suppression d'un sujet au clic sur la corbeille en fin de ligne
 
-  let trashButton = document.querySelectorAll(".trash");
+  var trashButton = document.querySelectorAll(".trash");
 
   Array.from(trashButton).forEach((button, index) => {
     button.addEventListener("click", () => {
@@ -83,7 +83,7 @@ listContent();
 
 /*--- ON CREE UN BOUTON BLOC-NOTE QU'ON POSITIONNE EN ABSOLU PAR-DESSUS LA TOOLBAR ---*/
 
-const blocNoteButton = document.createElement("button");
+var blocNoteButton = document.createElement("button");
 blocNoteButton.setAttribute("id", "blocnote-button");
 blocNoteButton.classList.add("blocnote-button");
 document.body.append(blocNoteButton);
@@ -93,10 +93,10 @@ blocNoteButton.innerHTML = '<img src="blocnote.png" class="blocnote-button-img"/
 
 // fonction création du bloc popup
 
-const popupContainer = document.createElement("div");
-const popupBloc = document.createElement("div");
+var popupContainer = document.createElement("div");
+var popupBloc = document.createElement("div");
 
-const createPopup = (containerName, blocName) => {
+var createPopup = (containerName, blocName) => {
   popupContainer.setAttribute("id", "popup");
   popupContainer.classList.add(containerName);
   popupBloc.classList.add(blocName);
@@ -106,7 +106,7 @@ const createPopup = (containerName, blocName) => {
 
 // fonction fermeture du popup
 
-const closePopup = () => {
+var closePopup = () => {
   while (popupContainer.hasChildNodes()) {
     popupContainer.removeChild(popupContainer.firstChild);
   }
@@ -116,7 +116,7 @@ const closePopup = () => {
 /*--- ON CREE LE BLOC QUI PERMETTRA D'AJOUTER UN LIEN OU VIDER LE BLOC-NOTE ---*/
 
 blocNoteButton.addEventListener("click", () => {
-  const loadForm = () => {
+  var loadForm = () => {
     createPopup("form-container", "form-bloc");
     popupBloc.innerHTML =
       '<button id="close-cross" class="close-cross">X</button><button id="add-to-list" class="addli">+ Ajouter un lien</button><button id="remove-list" class="resetli">Reset</button>';
@@ -128,7 +128,7 @@ blocNoteButton.addEventListener("click", () => {
     /*--- FONCTIONS MODIFICATIONS DE LA LISTE DES SUJETS (PART II) ---*/
     // --> suppression de l'ensemble du panier au clic sur "vider le panier"
 
-    const supprAll = document.querySelector("#remove-list");
+    var supprAll = document.querySelector("#remove-list");
 
     supprAll.addEventListener("click", () => {
       removeStorageItem(clef);
@@ -149,7 +149,7 @@ blocNoteButton.addEventListener("click", () => {
 
     /*--- CREATION DU CONTENU DU FORMULAIRE A RENSEIGNER ---*/
 
-    const createForm = () => {
+    var createForm = () => {
       popupBloc.innerHTML = `<section class="bloc-form">
       <h2 class="bloc-form__title">Merci de remplir ce formulaire pour saisir le sujet</h2>
       <label for="Link" class="bloc-form__label">Votre sujet :</label>
@@ -165,33 +165,33 @@ blocNoteButton.addEventListener("click", () => {
 
     /*--- OUVERTURE DU FORMULAIRE QUAND ON CLIQUE SUR +AJOUTER UN LIEN ---*/
     // on écoute le clic sur le bouton dont l'id est add-to-list
-    const addToListButton = document.querySelector("#add-to-list");
+    var addToListButton = document.querySelector("#add-to-list");
 
     addToListButton.addEventListener("click", (event) => {
       event.preventDefault();
 
-      const openForm = () => {
+      var openForm = () => {
         createPopup("popup-container", "popup-bloc");
         createForm(); // on appelle la fonction qui crée le contenu du formulaire
 
-        const quitAdd = document.querySelector("#quit-add"); // on sélectionne le bouton quitter
+        var quitAdd = document.querySelector("#quit-add"); // on sélectionne le bouton quitter
 
         quitAdd.addEventListener("click", function () {
           // au clic sur le bouton quitter :
           closePopup();
         });
 
-        const validateAdd = document.querySelector("#add-confirm"); // on sélectionne le bouton ajouter
+        var validateAdd = document.querySelector("#add-confirm"); // on sélectionne le bouton ajouter
 
         validateAdd.addEventListener("click", function () {
           // au clic sur le bouton ajouter :
           // foncion qui vérifier la conformité
 
-          const inputValues = document.querySelectorAll(".bloc-form__input");
+          var inputValues = document.querySelectorAll(".bloc-form__input");
 
-          const checkAllValidity = () => {
+          var checkAllValidity = () => {
             let validity = true;
-            for (const inputValue of inputValues) {
+            for (var inputValue of inputValues) {
               if (inputValue.validity.valid == false) {
                 validity = false;
               }
@@ -204,17 +204,17 @@ blocNoteButton.addEventListener("click", () => {
           if (checkAllValidity()) {
             // on crée un objet temporaire qui comportera le lien et le titre renseignés
 
-            const getInputValue = (inputId) => {
-              const inputValue = document.querySelector(`#${inputId}`).value;
+            var getInputValue = (inputId) => {
+              var inputValue = document.querySelector(`#${inputId}`).value;
               return inputValue;
             };
 
-            const optionsTopicToAdd = {
+            var optionsTopicToAdd = {
               link: getInputValue("Link"),
               title: getInputValue("Title"),
             };
 
-            const addToList = () => {
+            var addToList = () => {
               // si la liste du localStorage est vide, on crée un nouvel élément memolien avec le sujet en question à l'intérieur
               if (!topicsInList) {
                 setStorageItem(clef, optionsTopicToAdd);
