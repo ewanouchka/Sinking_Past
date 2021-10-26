@@ -51,7 +51,7 @@ var listContent = () => {
   /*--- FONCTIONS MODIFICATIONS DE LA LISTE DES SUJETS (PART I) ---*/
   // --> suppression d'un sujet au clic sur la corbeille en fin de ligne
 
-  var trashButton = document.getElementByClassName("trash");
+  var trashButton = document.getElementsByClassName("trash");
 
   Array.from(trashButton).forEach((button, index) => {
     button.addEventListener("click", () => {
@@ -187,7 +187,7 @@ blocNoteButton.addEventListener("click", () => {
           // au clic sur le bouton ajouter :
           // foncion qui vérifier la conformité
 
-          var inputValues = document.getElementByClassName("bloc-form__input");
+          var inputValues = document.getElementsByClassName("bloc-form__input");
 
           var checkAllValidity = () => {
             let validity = true;
