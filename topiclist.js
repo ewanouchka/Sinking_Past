@@ -45,7 +45,7 @@ var listContent = () => {
   blocReceveur.innerHTML = arrayOfTopics
     .map(
       (topic) =>
-        `<div class="cadillac"><a href="${topic.link}">${topic.title}</a> <button class="trash mini-button" aria-hidden="true"><i class="fas fa-trash-alt"></i></button></div>`
+        `<div class="cadillac"><a href="${topic.link}">${topic.title}</a> <button class="trash mini-button" aria-hidden="true"><i class="ion-trash-a"></i></button></div>`
     )
     .join("");
 
