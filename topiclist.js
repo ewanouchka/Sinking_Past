@@ -83,13 +83,13 @@ var listContent = () => {
 listContent();*/
 
 
-/*--- ON CREE UN BOUTON BLOC-NOTE QU'ON POSITIONNE EN ABSOLU PAR-DESSUS LA TOOLBAR ---*/
+/*--- ON CREE UN BOUTON BLOC-NOTE QU'ON POSITIONNE EN ABSOLU PAR-DESSUS LA TOOLBAR ---
 
 var blocNoteButton = document.createElement("button");
 blocNoteButton.setAttribute("id", "blocnote-button");
 blocNoteButton.classList.add("blocnote-button");
 document.body.append(blocNoteButton);
-blocNoteButton.innerHTML = '<img src="https://ewanouchka.github.io/Sinking_Past/blocnote.png" class="blocnote-button-img"/>';
+blocNoteButton.innerHTML = '<img src="https://ewanouchka.github.io/Sinking_Past/blocnote.png" class="blocnote-button-img"/>';*/
 
 /*--- CREATION D'UN POPUP ---*/
 
