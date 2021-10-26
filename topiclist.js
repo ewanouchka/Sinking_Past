@@ -36,60 +36,13 @@ var formatList = () => {
 // on crée une variable qui utilise la fonction formatList pour avoir accès directement au tableau de liens
 let arrayOfTopics = formatList();
 
-/*--- ON AFFICHE LA LISTE DES LIENS DANS LE BLOC RECEVEUR ---
-var blocReceveur = document.getElementById("receveur");
-console.log(blocReceveur);
-console.log(document.getElementById("receveur"));
-
-var listContent = () => {
-  blocReceveur.innerHTML = arrayOfTopics
-    .map(
-      (topic) =>
-        `<div class="cadillac"><a href="${topic.link}">${topic.title}</a> <button class="trash mini-button" aria-hidden="true"><i class="ion-trash-a"></i></button></div>`
-    )
-    .join("");
-
-  /*--- FONCTIONS MODIFICATIONS DE LA LISTE DES SUJETS (PART I) ---
-  // --> suppression d'un sujet au clic sur la corbeille en fin de ligne
-
-  var trashButton = document.getElementsByClassName("trash");
-
-  Array.from(trashButton).forEach((button, index) => {
-    button.addEventListener("click", () => {
-      if (arrayOfTopics.length == 1) {
-        removeStorageItem(clef);
-
-        topicsInList = getStorageItem(clef);
-
-        arrayOfTopics = formatList();
-        listContent();
-
-        // window.location.reload();
-        return;
-      }
-      if (arrayOfTopics.length !== 1) {
-        arrayOfTopics.splice(index, 1);
-        setStorageItem(clef, arrayOfTopics);
-
-        topicsInList = getStorageItem(clef);
-
-        arrayOfTopics = formatList();
-        listContent();
-        //window.location.reload();
-      }
-    });
-  });
-};
-listContent();*/
-
-
-/*--- ON CREE UN BOUTON BLOC-NOTE QU'ON POSITIONNE EN ABSOLU PAR-DESSUS LA TOOLBAR ---
+/*--- ON CREE UN BOUTON BLOC-NOTE QU'ON POSITIONNE EN ABSOLU PAR-DESSUS LA TOOLBAR ---*/
 
 var blocNoteButton = document.createElement("button");
 blocNoteButton.setAttribute("id", "blocnote-button");
 blocNoteButton.classList.add("blocnote-button");
 document.body.append(blocNoteButton);
-blocNoteButton.innerHTML = '<img src="https://ewanouchka.github.io/Sinking_Past/blocnote.png" class="blocnote-button-img"/>';*/
+blocNoteButton.innerHTML = '<img src="https://ewanouchka.github.io/Sinking_Past/blocnote.png" class="blocnote-button-img" id="blocnote-button-img"/>';
 
 /*--- CREATION D'UN POPUP ---*/
 
