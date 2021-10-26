@@ -51,7 +51,7 @@ var listContent = () => {
   /*--- FONCTIONS MODIFICATIONS DE LA LISTE DES SUJETS (PART I) ---*/
   // --> suppression d'un sujet au clic sur la corbeille en fin de ligne
 
-  var trashButton = document.getElementByClassName(".trash");
+  var trashButton = document.getElementByClassName("trash");
 
   Array.from(trashButton).forEach((button, index) => {
     button.addEventListener("click", () => {
@@ -87,7 +87,7 @@ var blocNoteButton = document.createElement("button");
 blocNoteButton.setAttribute("id", "blocnote-button");
 blocNoteButton.classList.add("blocnote-button");
 document.body.append(blocNoteButton);
-blocNoteButton.innerHTML = '<img src="https://ewanouchka.github.io/Sinking_Past/blocnote.png" class="blocnote-button-img"/>';
+blocNoteButton.innerHTML = '<img src="blocnote.png" class="blocnote-button-img"/>';
 
 /*--- CREATION D'UN POPUP ---*/
 
@@ -121,14 +121,14 @@ blocNoteButton.addEventListener("click", () => {
     popupBloc.innerHTML =
       '<button id="close-cross" class="close-cross">X</button><button id="add-to-list" class="addli">+ Ajouter un lien</button><button id="remove-list" class="resetli">Reset</button>';
 
-    document.getElementById("#close-cross").addEventListener("click", () => {
+    document.getElementById("close-cross").addEventListener("click", () => {
       closePopup();
     });
 
     /*--- FONCTIONS MODIFICATIONS DE LA LISTE DES SUJETS (PART II) ---*/
     // --> suppression de l'ensemble du panier au clic sur "vider le panier"
 
-    var supprAll = document.getElementById("#remove-list");
+    var supprAll = document.getElementById("remove-list");
 
     supprAll.addEventListener("click", () => {
       removeStorageItem(clef);
@@ -139,10 +139,10 @@ blocNoteButton.addEventListener("click", () => {
 
       listContent();
       createPopup("popup-container", "suppr-confirm");
-      document.getElementById(".suppr-confirm").innerHTML = `La liste a bien été vidée.
+      document.getElementById("suppr-confirm").innerHTML = `La liste a bien été vidée.
     <button class="button" id="close-confirm"><span>Fermer</span></button>`;
 
-      document.getElementById("#close-confirm").addEventListener("click", function () {
+      document.getElementById("close-confirm").addEventListener("click", function () {
         loadForm();
       });
     });
@@ -165,7 +165,7 @@ blocNoteButton.addEventListener("click", () => {
 
     /*--- OUVERTURE DU FORMULAIRE QUAND ON CLIQUE SUR +AJOUTER UN LIEN ---*/
     // on écoute le clic sur le bouton dont l'id est add-to-list
-    var addToListButton = document.getElementById("#add-to-list");
+    var addToListButton = document.getElementById("add-to-list");
 
     addToListButton.addEventListener("click", (event) => {
       event.preventDefault();
@@ -174,20 +174,20 @@ blocNoteButton.addEventListener("click", () => {
         createPopup("popup-container", "popup-bloc");
         createForm(); // on appelle la fonction qui crée le contenu du formulaire
 
-        var quitAdd = document.getElementById("#quit-add"); // on sélectionne le bouton quitter
+        var quitAdd = document.getElementById("quit-add"); // on sélectionne le bouton quitter
 
         quitAdd.addEventListener("click", function () {
           // au clic sur le bouton quitter :
           closePopup();
         });
 
-        var validateAdd = document.getElementById("#add-confirm"); // on sélectionne le bouton ajouter
+        var validateAdd = document.getElementById("add-confirm"); // on sélectionne le bouton ajouter
 
         validateAdd.addEventListener("click", function () {
           // au clic sur le bouton ajouter :
           // foncion qui vérifier la conformité
 
-          var inputValues = document.getElementByClassName(".bloc-form__input");
+          var inputValues = document.getElementByClassName("bloc-form__input");
 
           var checkAllValidity = () => {
             let validity = true;
@@ -239,10 +239,10 @@ blocNoteButton.addEventListener("click", () => {
 
                 listContent();
                 createPopup("popup-container", "add-confirm");
-                document.getElementById(".add-confirm").innerHTML = `Le sujet a bien été ajouté.
+                document.getElementById("add-confirm").innerHTML = `Le sujet a bien été ajouté.
               <button class="button" id="close-confirm"><span>Fermer</span></button>`;
 
-                document.getElementById("#close-confirm").addEventListener("click", function () {
+                document.getElementById("close-confirm").addEventListener("click", function () {
                   loadForm();
                 });
                 return;
@@ -251,10 +251,10 @@ blocNoteButton.addEventListener("click", () => {
               // si on n'est pas dans les cas précédents, on crée un message d'erreur
               else {
                 createPopup("popup-container", "popup-error");
-                document.getElementById(".popup-error").innerHTML = `Ce sujet est déjà dans la liste
+                document.getElementById("popup-error").innerHTML = `Ce sujet est déjà dans la liste
               <button class="button" id="close"><span>Fermer</span></button>`;
 
-                document.getElementById("#close").addEventListener("click", function () {
+                document.getElementById("close").addEventListener("click", function () {
                   openForm();
                 });
               }
@@ -269,10 +269,10 @@ blocNoteButton.addEventListener("click", () => {
             return;
           } else {
             createPopup("popup-container", "popup-error");
-            document.getElementById(".popup-error").innerHTML = `Merci de compléter les deux champs du formulaire.
+            document.getElementById("popup-error").innerHTML = `Merci de compléter les deux champs du formulaire.
           <button class="button" id="do-it-again"><span>Recommencer</span></button>`;
 
-            document.getElementById("#do-it-again").addEventListener("click", function () {
+            document.getElementById("do-it-again").addEventListener("click", function () {
               openForm();
             });
           }
