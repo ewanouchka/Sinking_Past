@@ -36,8 +36,7 @@ var formatList = () => {
 // on crée une variable qui utilise la fonction formatList pour avoir accès directement au tableau de liens
 let arrayOfTopics = formatList();
 
-/*--- ON AFFICHE LA LISTE DES LIENS DANS LE BLOC RECEVEUR ---*/
-
+/*--- ON AFFICHE LA LISTE DES LIENS DANS LE BLOC RECEVEUR ---
 var blocReceveur = document.getElementById("receveur");
 console.log(blocReceveur);
 console.log(document.getElementById("receveur"));
@@ -50,7 +49,7 @@ var listContent = () => {
     )
     .join("");
 
-  /*--- FONCTIONS MODIFICATIONS DE LA LISTE DES SUJETS (PART I) ---*/
+  /*--- FONCTIONS MODIFICATIONS DE LA LISTE DES SUJETS (PART I) ---
   // --> suppression d'un sujet au clic sur la corbeille en fin de ligne
 
   var trashButton = document.getElementsByClassName("trash");
@@ -81,7 +80,8 @@ var listContent = () => {
     });
   });
 };
-listContent();
+listContent();*/
+
 
 /*--- ON CREE UN BOUTON BLOC-NOTE QU'ON POSITIONNE EN ABSOLU PAR-DESSUS LA TOOLBAR ---*/
 
