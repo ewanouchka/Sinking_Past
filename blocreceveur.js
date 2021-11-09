@@ -1,7 +1,5 @@
 /*--- ON AFFICHE LA LISTE DES LIENS DANS LE BLOC RECEVEUR ---*/
 var blocReceveur = document.getElementById("receveur");
-console.log(blocReceveur);
-console.log(document.getElementById("receveur"));
 
 var listContent = () => {
   blocReceveur.innerHTML = arrayOfTopics
